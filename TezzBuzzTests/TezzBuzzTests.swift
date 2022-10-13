@@ -47,7 +47,7 @@ class TezzBuzzTests: XCTestCase {
     func expect(input: Int, withOutput:String){
         //arange
         // SUT = System Under Test
-        let sut = FizzBuzzMapper()
+        let sut = makeSUT()
         // act
         let output = sut.parseInput(input: input)
         // assert
