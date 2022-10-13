@@ -20,6 +20,13 @@ class FizzBuzzMapper {
 }
 
 class TezzBuzzTests: XCTestCase {
+    
+    var fizzbuzz: FizzBuzzMapper!
+    
+    override func setUp() {
+        super.setUp()
+        fizzbuzz = makeSUT()
+    }
 
     func test_parseNumber(){
        expect(input: 1, withOutput:  "1")
@@ -45,11 +52,8 @@ class TezzBuzzTests: XCTestCase {
     }
     
     func expect(input: Int, withOutput:String){
-        //arange
-        // SUT = System Under Test
-        let sut = makeSUT()
         // act
-        let output = sut.parseInput(input: input)
+        let output = fizzbuzz.parseInput(input: input)
         // assert
         XCTAssertEqual(output, withOutput)
     }
