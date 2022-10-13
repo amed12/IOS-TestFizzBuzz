@@ -21,41 +21,59 @@ class FizzBuzzMapper {
 
 class TezzBuzzTests: XCTestCase {
     
-    var fizzbuzz: FizzBuzzMapper!
-    
-    override func setUp() {
-        super.setUp()
-        fizzbuzz = makeSUT()
-    }
-
-    func test_parseNumber(){
-       expect(input: 1, withOutput:  "1")
-        expect(input: 2, withOutput:  "2")
-        expect(input: 4, withOutput:  "4")
+    func test_parseNumber_withInputThree_shouldReturnFizz(){
+        let sut = makeSUT()
+        let expected = sut.parseInput(input: 3)
+        XCTAssertEqual(expected, "Fizz")
     }
     
-    func test_parseFizz(){
-       expect(input: 3, withOutput:  "Fizz")
+    func test_parseNumber_withInputFive_shouldReturnBuzz(){
+        let sut = makeSUT()
+        let expected = sut.parseInput(input: 5)
+        XCTAssertEqual(expected, "Buzz")
     }
     
-    func test_parseBuzz(){
-       expect(input: 5, withOutput:  "Buzz")
+    func test_parseNumber_withInputFiveTeen_shouldReturnFizzBuzz(){
+        let sut = makeSUT()
+        let expected = sut.parseInput(input: 15)
+        XCTAssertEqual(expected, "FizzBuzz")
     }
     
-    func test_parseFizzBuzz(){
-       expect(input: 15, withOutput:  "FizzBuzz")
+    func test_parseNumber_withInputOneUntilOneHundred_shouldContains27Fizz(){
+        let sut = makeSUT()
+        var exactNumber = 0
+        for number in 1...100{
+            if sut.parseInput(input: number) == "Fizz"{
+                exactNumber += 1
+            }
+        }
+        XCTAssertEqual(exactNumber, 27)
     }
     
+    func test_parseNumber_withInputOneUntilOneHundred_shouldContains14Buzz(){
+        let sut = makeSUT()
+        var exactNumber = 0
+        for number in 1...100{
+            if sut.parseInput(input: number) == "Buzz"{
+                exactNumber += 1
+            }
+        }
+        XCTAssertEqual(exactNumber, 14)
+    }
+    
+    func test_parseNumber_withInputOneUntilOneHundred_shouldContains6FizzBuzz(){
+        let sut = makeSUT()
+        var exactNumber = 0
+        for number in 1...100{
+            if sut.parseInput(input: number) == "FizzBuzz"{
+                exactNumber += 1
+            }
+        }
+        XCTAssertEqual(exactNumber, 6)
+    }
     // MARK : Helper
     func makeSUT() -> FizzBuzzMapper {
         return FizzBuzzMapper()
     }
     
-    func expect(input: Int, withOutput:String){
-        // act
-        let output = fizzbuzz.parseInput(input: input)
-        // assert
-        XCTAssertEqual(output, withOutput)
-    }
-
 }
